@@ -6,8 +6,8 @@ categories: ssis, c#
 ---
 
 
-# C#: Check the Excel SheetName
-## Using Microsoft.ACE.OLEDB
+
+### Using Microsoft.ACE.OLEDB
 
 
 When data pipeline requires a user-uploaded excel file to be read to a database,  a common breakpoint is the ETL process failing spectacularly :fearful: because the 
