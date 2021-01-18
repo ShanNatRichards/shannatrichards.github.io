@@ -21,8 +21,8 @@
 title: ShanNatRichards 
 description: >- # this means to ignore newlines until "baseurl:"
   Hi, I'm Shan. I'm an IT grad with experience in 
-  data warehousing, business intelligece, 
-  vizualizations, and machine learning.
+  data warehousing, business intelligence, 
+  Tableau, and machine learning.
   
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://shannatrichards.github.io" # the base hostname & protocol for your site, e.g. http://example.com
@@ -30,7 +30,7 @@ github_username:  ShanNatRichards
 
 #Options that come with minima but are not default
 author: Shan Richards
-linkedin_username: Shanique Richards
+linkedin_username: shanique-richards
 
 
 # Build settings
