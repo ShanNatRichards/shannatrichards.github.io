@@ -1,3 +1,9 @@
+---
+layout: post
+title:  "Postgres Windows Functions"
+categories: sql, postgres
+---
+
 # Postgres Windows Functions
 
 
