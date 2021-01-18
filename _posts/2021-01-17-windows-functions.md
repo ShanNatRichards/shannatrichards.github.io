@@ -4,8 +4,6 @@ title:  "Postgres Windows Functions"
 categories: sql, postgres
 ---
 
-# Postgres Windows Functions
-
 
 Using our sample registered voter [dataset](https://github.com/ShanNatRichards/postgreSQL/blob/main/voters_table.sql), let's use windows functions to describe voter distribution (by streets) in a district.
 See full code at the end.
