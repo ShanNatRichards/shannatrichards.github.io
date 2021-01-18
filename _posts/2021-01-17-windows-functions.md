@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Postgres: Windows Functions"
+title:  "Postgres Windows Functions"
 categories: sql, postgres
 ---
 
