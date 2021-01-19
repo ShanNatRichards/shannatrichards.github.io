@@ -38,9 +38,9 @@
         <h2><a href="{{ post.url | absolute_url }}" >{{post.title}}</a></h2>
         <sp> Tags: </sp>
          {% for category in post.categories %}
-          <sp> {{category}} </sp>
-                    
+          <sp> {{category}} </sp>                    
         {% endfor %}
+        <br>
         <br>
         <p> {{post.excerpt }} </p>
         <br><hr> 
