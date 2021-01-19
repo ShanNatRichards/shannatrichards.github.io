@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: default
 title:  "C# Scripts for SSIS: How To Check Excel Sheetnames"
 date:   2021-01-16 18:21:38 -0800
 categories: ssis, c#

@@ -1,7 +1,8 @@
 ---
-layout: post
+layout: default
 title:  "Postgres Windows Functions"
 categories: sql, postgres
+
 ---
 
 

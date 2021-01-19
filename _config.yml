@@ -18,7 +18,7 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 
-title: ShanNatRichards 
+title: Shan Richards 
 description: >- # this means to ignore newlines until "baseurl:"
   Hi, I'm Shan. I'm an IT grad with experience in 
   data warehousing, business intelligence, 
@@ -32,10 +32,12 @@ github_username:  ShanNatRichards
 author: Shan Richards
 linkedin_username: shanique-richards
 
+#options that came with Minimal
+logo: /assets/img/photo.jpg 
 
 # Build settings
 #I Removed the minima theme as  I am forsaking the gem based theme for a regular theme
-#theme: minima
+theme: jekyll-theme-minimal
 plugins:
   - jekyll-feed
 

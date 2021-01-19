@@ -1,0 +1,33 @@
+---
+---
+
+@import "jekyll-theme-minimal";
+
+h1, h2, h3, h4, h5 {
+color: black ;
+}
+
+h2, h3 {
+margin-bottom: 1%;
+}
+
+a {
+color: black;
+text-decoration: inherit;
+}
+
+img {
+border-radius: 50%;
+max-width: 80%;
+margin-bottom: 3%;
+}
+
+.wrapper {
+width: 945px;
+
+}
+
+section {
+width: 575px;
+}
+
