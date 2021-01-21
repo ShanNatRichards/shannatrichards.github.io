@@ -4,7 +4,6 @@ title:  "SSIS: How To Check Excel Sheetnames"
 date:   2021-01-16 18:21:38 -0800
 categories: ssis, c#
 ---
-
 When a data pipeline requires an uploaded excel file to be read to a database, a common breakpoint occurs when the the excel sheetnames do not match the default set-up causing the ETL process to fail spectacularly. Here's some  base code for programmatically checking that sheetnames are correct before trying to load to excel to a DB. 
 
 <!--more-->
