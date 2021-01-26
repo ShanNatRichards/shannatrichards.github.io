@@ -1,21 +1,16 @@
 ---
 layout: default
-title:  "C# Scripts for SSIS: How To Check Excel Sheetnames"
+title:  "SSIS: How To Check Excel Sheetnames"
 date:   2021-01-16 18:21:38 -0800
 categories: ssis, c#
+excerpt: "When a data pipeline requires an uploaded excel file to be read to a database, a common breakpoint happens when the the excel sheetnames don't match the default set-up. Here's some base code for programmatically checking Excel sheetnames using SSIS scripts. "
 ---
-
-
-### Using Microsoft.ACE.OLEDB
-When a data pipeline requires an uploaded excel file to be read to a database, a common breakpoint occurs when the the excel sheetnames do not match the default set-up causing the ETL process to 
-fail spectacularly. Here's some  base code for programmatically checking that sheetnames are correct before trying to load to excel to a DB. 
-
-<!--more-->
+When a data pipeline requires an uploaded excel file to be read to a database, a common breakpoint occurs when the the excel sheetnames do not match the default set-up. Here's some base code for programmatically checking Excel sheetnames using SSIS scripts. 
 
 
 ### Pre-requisites
 - Visual Studio
-- Access Database Engine to facilate the transfer of data between Excel and VS. 
+- Access Database Engine (ACE.OLEDB.12) to facilate the transfer of data between Excel and VS. 
 
 
 ### Add the following namespaces to your script

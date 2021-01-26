@@ -2,11 +2,10 @@
 layout: default
 title:  "Postgres Windows Functions"
 categories: sql, postgres
-
+excerpt: "Windows functions are effective ways of applying functions to row partitions (windows). Using our sample registered voter dataset, let's use windows functions to describe voter distribution (by streets) in a district."
 ---
+Windows functions are effective ways of applying functions to row partitions (windows). Using our sample registered voter [dataset](https://github.com/ShanNatRichards/postgreSQL/blob/main/voters_table.sql), let's use windows functions to describe voter distribution (by streets) in a district.
 
-
-Using our sample registered voter [dataset](https://github.com/ShanNatRichards/postgreSQL/blob/main/voters_table.sql), let's use windows functions to describe voter distribution (by streets) in a district.
 See full code at the end.
 
 There are 1240 voters in this particularly voting district with 73 district streets.
