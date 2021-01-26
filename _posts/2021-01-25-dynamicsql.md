@@ -3,7 +3,7 @@ layout: default
 title:  "Dynamic SQL with sp_executesql"
 date:   2021-01-25 10:21:38 -0800
 categories: tsql, programmatic sql
-excerpt: "Dynamic SQL adds flexibility, modularity, and reusability to SQL coding by building SQL statements as strings sat runtime and then executing that string . Let's explore.' 
+excerpt: "Dynamic SQL adds flexibility, modularity, and reusability to SQL coding by building SQL statements as strings sat runtime and then executing that string . Let's explore."
 ---
 
 Dynamic SQL adds flexibility, modularity, and reusability to your SQL code by building SQL statements as strings at runtime and then executing that string.
@@ -13,8 +13,14 @@ the command sp_executesql is a common way of accomplishing dynamic SQL statement
 
 
 ### Scenario:
-Using our cleaned and anonymized voter datasets, we want to figure out the most common occupations among the voters for our district tables. 
+Using our cleaned and anonymized voter [datasets](https://github.com/ShanNatRichards/T-SQL/tree/main/datasets), we want to figure out the most common occupations among the voters for our district tables. 
+
+*TLDR; See full code [here](https://github.com/ShanNatRichards/T-SQL/blob/main/dynamic_sql_example.sql).*
+
+
 A first instinct maybe to run something similar to the query below – which returns the top 1 occupation for each table, performs a union, and then returns the result.
+
+
 
 ```sql
 
