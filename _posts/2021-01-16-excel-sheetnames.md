@@ -2,7 +2,7 @@
 layout: default
 title:  "SSIS: How To Check Excel Sheetnames"
 date:   2021-01-16 18:21:38 -0800
-categories: ssis, c#
+categories: ssis, C#, .NET
 excerpt: "When a data pipeline requires an uploaded excel file to be read to a database, a common breakpoint happens when the the excel sheetnames don't match the default set-up. Here's some base code for programmatically checking Excel sheetnames using SSIS scripts. "
 ---
 When a data pipeline requires an uploaded excel file to be read to a database, a common breakpoint occurs when the the excel sheetnames do not match the default set-up. Here's some base code for programmatically checking Excel sheetnames using SSIS scripts. 
