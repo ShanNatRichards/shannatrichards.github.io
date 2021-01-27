@@ -3,7 +3,7 @@ layout: default
 title:  "Dynamic SQL with sp_executesql"
 date:   2021-01-25 10:21:38 -0800
 categories: tsql, programmatic sql
-excerpt: "Dynamic SQL adds flexibility, modularity, and reusability to SQL coding by building SQL statements as strings sat runtime and then executing that string . Let's explore."
+excerpt: "Dynamic SQL adds flexibility, modularity, and reusability to SQL coding by building SQL statements as strings at runtime and then executing. Let's explore."
 ---
 
 Dynamic SQL adds flexibility, modularity, and reusability to your SQL code by building SQL statements as strings at runtime and then executing that string.
