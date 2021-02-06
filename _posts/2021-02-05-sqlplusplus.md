@@ -3,10 +3,10 @@ layout: default
 title:  "Querying JSON data with SQL++"
 date:   2021-02-05 16:21:38 -0800
 categories: bdms, big data, sql++, nosql
-excerpt: "SQL++ is an extended SQL language used to query JSON data. It’s used with for Apache AstrixDB – a big data management system (BDMS) that stores and manages semi-structured data, a la a NoSQL style data model."
+excerpt: "SQL++ is an extended SQL language used to query JSON data. It’s used in Apache AstrixDB – a big data management system (BDMS) that stores and manages semi-structured data, a la a NoSQL style data model."
 ---
 
-SQL++ is an extended SQL language used to query JSON data. It’s used with for Apache AstrixDB – a big data management system (BDMS) that stores and manages semi-structured data, a la a NoSQL style data model.
+SQL++ is an extended SQL language used to query JSON data. It’s used in Apache AstrixDB – a big data management system (BDMS) that stores and manages semi-structured data, a la a NoSQL style data model.
 
 One of the challenges that SQL practitioners experience using noSQL databases, such as MondoDB, is that these dbs use a query language that is syntactically different to SQL.  
 
