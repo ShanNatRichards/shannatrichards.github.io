@@ -8,7 +8,7 @@ excerpt: "SQL++ is an extended SQL language used to query JSON data. It’s used
 
 SQL++ is an extended SQL language used to query JSON data. It’s used in Apache AstrixDB – a big data management system (BDMS) that stores and manages semi-structured data, a la a NoSQL style data model.
 
-One of the challenges that SQL practitioners experience using noSQL databases, such as MondoDB, is that these dbs use a query language that is syntactically different to SQL.  
+One of the challenges that SQL practitioners experience using noSQL databases, such as MongoDB, is that these dbs use a query language that is syntactically different to SQL.  
 
 SQL ++ bucks this trend, however, as it’s largely backward compatible with SQL. In fact, for the most part one can use traditional SQL to query AstrixDB. For example, let’s say that you want to pull up the record for employee with id = 100 from an employee table record set. 
 A traditional SQL query can be run successfully in AstrixDB like this:
