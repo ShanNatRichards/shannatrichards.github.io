@@ -7,7 +7,7 @@ excerpt: "In postgreSQL, we accomplish recursive queries with the use of CTEs (c
 ---
 A recursive function is one that calls itself –  it requires a base case and a recursive call. Typically, recursive functions are useful for solving Math factorials and traversing structures such as trees and graphs, to name a few practical applications.  In postgreSQL, we accomplish recursive queries with the use of CTEs (common table expressions) and the UNION ALL clause. Let’s explore more below.
 
-TL;DR. See complete code [here](https://github.com/ShanNatRichards/postgreSQL/blob/9294b6881749d730cfe4a7a02ae99f1385070e49/recursive_query.sql)
+TL;DR. See complete code [here](https://github.com/ShanNatRichards/postgreSQL/recursive_query.sql)
 
 ### Basics of A Recursive SQL Query
 
@@ -32,7 +32,7 @@ In the second SELECT, our recursive calls take place. Notice that in this SELECT
 
 Let’s see our results below. 
 
-![Recursion Even Numbers](https://github.com/ShanNatRichards/postgreSQL/blob/f4d9f67e973ab942a8c830b3a8758eae0d29577e/recursive/even_numbers.png)
+![Recursion Even Numbers](https://github.com/ShanNatRichards/postgreSQL/recursive/even_numbers.png)
 
  
 Our recursive query returns record rows with even numbers from 0 to 20.
