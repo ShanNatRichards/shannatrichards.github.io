@@ -1,14 +1,17 @@
 ---
 layout: default
 title:  "Recursive Queries"
-date:   2021-03-28 17:21:38 -0800
+date:   2021-03-27 17:21:38 -0800
 categories: postgres, sql, recursion, cte
 excerpt: "In postgreSQL, we accomplish recursive queries with the use of CTEs (common table expressions) and the UNION ALL clause. Let’s explore."
 ---
 A recursive function is one that calls itself –  it requires a base case and a recursive call. Typically, recursive functions are useful for solving Math factorials and traversing structures such as trees and graphs, to name a few practical applications.  In postgreSQL, we accomplish recursive queries with the use of CTEs (common table expressions) and the UNION ALL clause. Let’s explore more below.
 
-### Basics of Recursive Query
-Let’s start with an elementary example of a recursive query in postgres – one which returns even numbers from 0 tot 20.  
+TL;DR. See complete code [here](https://github.com/ShanNatRichards/postgreSQL/blob/9294b6881749d730cfe4a7a02ae99f1385070e49/recursive_query.sql)
+
+### Basics of A Recursive SQL Query
+
+Let’s start with an elementary example of a recursive query in postgres – one which returns even numbers from 0 to 20.  
 
 ```sql
 WITH RECURSIVE rcte as (
@@ -29,7 +32,7 @@ In the second SELECT, our recursive calls take place. Notice that in this SELECT
 
 Let’s see our results below. 
 
-![Recursion Even Numbers](https://github.com/ShanNatRichards/shannatrichards.github.io/blob/48f66f9089509ab655f7347796cdbf0dc9f1237b/assets/img/recursive/even_numbers.png)
+![Recursion Even Numbers](https://github.com/ShanNatRichards/postgreSQL/blob/f4d9f67e973ab942a8c830b3a8758eae0d29577e/recursive/even_numbers.png)
 
  
 Our recursive query returns record rows with even numbers from 0 to 20.
@@ -59,7 +62,7 @@ The company’s clerks, in a bid to ensure tour variety, have identified and sto
 So, we need to figure out possible activity plans for a tour, where the activity time frames do not overlap. Also, the manager is keen start the tour with Yoga in the park. 
 
 Here’s our table:
-![table](https://github.com/ShanNatRichards/shannatrichards.github.io/blob/48f66f9089509ab655f7347796cdbf0dc9f1237b/assets/img/recursive/tour_stop%20table.png)
+![table](https://github.com/ShanNatRichards/postgreSQL/blob/f4d9f67e973ab942a8c830b3a8758eae0d29577e/recursive/tour_stop%20table.png)
 
 
 ***Solution?***
@@ -87,12 +90,13 @@ SELECT  activity_plan
 FROM stg;
 ```
 The recursion returns 286 rows and here’s a sample of the results:
-![recursive query](https://github.com/ShanNatRichards/shannatrichards.github.io/blob/48f66f9089509ab655f7347796cdbf0dc9f1237b/assets/img/recursive/result1.png)
+![recursive query](https://github.com/ShanNatRichards/postgreSQL/blob/f4d9f67e973ab942a8c830b3a8758eae0d29577e/recursive/result1.png)
  
 Let’s go over what’s a happening above.
 In the initial SELECT query, we return one row for Yoga in the Park – which is the activity the manager is keen to start the tour with. This is row 1 in the results above. 
 In the recursive SELECT, there is a JOIN back to the tour_stop table, which looks for rows that have a start time greater than the end time for ‘Yoga in the Park’. There are several activities that meet this condition and are returned in rows 2 -18.
 For every row returned from 2- 18, the recursion will be called again looking for activities with start times greater than the end times of those activities in 2-18. And so on and so forth until the recursion can longer find rows that meet the join condition. 
+
 
 ***Refining the query***
 
@@ -110,11 +114,12 @@ ORDER BY LENGTH(activity_plan) DESC;
 
 Sample of Results:
  
-![recursive query 2](https://github.com/ShanNatRichards/shannatrichards.github.io/blob/48f66f9089509ab655f7347796cdbf0dc9f1237b/assets/img/recursive/result_cleaned.png)
+![recursive query 2](https://github.com/ShanNatRichards/postgreSQL/blob/f4d9f67e973ab942a8c830b3a8758eae0d29577e/recursive/result_cleaned.png)
 
 ### Concluding Considerations:
 
 Recursion queries can be very expensive – especially when the stopping conditions aren’t clearly considered. Imagine if this table actually had thousands of records? Or worse, a clerk made an error and entered an activity which had end time that was less than the start time. Your recursion could easily spool out of control. So, it’s important to use recursions in a careful and considered manner. 
+
 
   
 
