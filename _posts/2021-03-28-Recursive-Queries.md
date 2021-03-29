@@ -83,10 +83,10 @@ SELECT t.start_time
 , t.end_time
 , concat(stg.activity_plan, '>> ', t.name, ' ', t.start_time, ' - ', t.end_time) as activity_plan 
 FROM stg
-INNER JOIN tour_stops t on t.start_time > stg.end_time
+INNER JOIN tour_stops t ON t.start_time > stg.end_time
 )
 
-SELECT  activity_plan
+SELECT activity_plan
 FROM stg;
 ```
 The recursion returns 286 rows and here’s a sample of the results:
@@ -108,8 +108,10 @@ In the outer SELECT clause, let’s add a WHERE clause and also re-order the que
 sql```
 SELECT activity_plan
 FROM stg
-WHERE  end_time > '15:00' and activity_plan like '%Lunch%'
+WHERE  end_time > '15:00' 
+       AND activity_plan like '%Lunch%'
 ORDER BY LENGTH(activity_plan) DESC;
+
 ```
 
 Sample of Results:
