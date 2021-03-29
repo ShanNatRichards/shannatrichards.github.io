@@ -64,7 +64,7 @@ So, we need to figure out possible activity plans for a tour, where the activity
 
 Here’s our table:
 
-![table](https://github.com/ShanNatRichards/postgreSQL/main/images/tour_stop%20table.png)
+![table](https://raw.githubusercontent.com/ShanNatRichards/postgreSQL/main/recursive/tour_stop%20table.png)
 
 
 ***The Solution***
@@ -92,7 +92,7 @@ SELECT activity_plan
 FROM stg;
 ```
 The recursion returns 286 rows and here’s a sample of the results:
-![recursive query](https://github.com/ShanNatRichards/postgreSQL/blob/main/images/result1.png)
+![recursive query](https://raw.githubusercontent.com/ShanNatRichards/postgreSQL/main/images/result1.png)
  
 Let’s go over what’s happening above.
 
@@ -118,11 +118,11 @@ ORDER BY LENGTH(activity_plan) DESC;
 
 Sample of Results:
  
-![recursive query 2](https://github.com/ShanNatRichards/postgreSQL/blob/main/images/result_cleaned.png)
+![recursive query 2](https://raw.githubusercontent.com/ShanNatRichards/postgreSQL/main/recursive/result_cleaned.png)
 
 ### Concluding Considerations:
 
-Recursion queries can be very expensive – especially when the stopping conditions aren’t clearly considered. Imagine if this table actually had thousands of records? Or worse, a clerk made an error and entered an activity which had end time that was less than the start time. Your recursion could easily spool out of control. So, it’s important to use recursions in a careful and considered manner. 
+Recursive queries can be very expensive – especially when the stopping conditions aren’t clearly considered. Imagine if this table actually had thousands of records? Or worse, a clerk made an error by entering an activity where the end time was earlier than the start time. This recursion could easily spool out of control. Therefore, always use recursions in a careful and considered manner. 
 
 
   
