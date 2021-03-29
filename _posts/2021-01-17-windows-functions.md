@@ -57,7 +57,7 @@ Of the 73 streets in our voting district, 50.55% of registered voters in the dis
 If we look a little closely, we see that majority of those thoroughfares in the top 14 are roads. We could surmise that roads have more housing units than lanes (LN) or closes (CL). 
 
 
-![Windows Function Results](https://github.com/ShanNatRichards/postgreSQL/blob/main/images/voters.JPG)
+![Windows Function Results](https://raw.githubusercontent.com/ShanNatRichards/postgreSQL/main/images/voters.JPG)
 
 
 
