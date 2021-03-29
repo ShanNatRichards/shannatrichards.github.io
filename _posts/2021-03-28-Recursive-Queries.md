@@ -1,7 +1,7 @@
 ---
 layout: default
 title:  "Recursive Queries"
-date:   2021-01-16 18:21:38 -0800
+date:   2021-03-28 17:21:38 -0800
 categories: postgres, sql, recursion, cte
 excerpt: "In postgreSQL, we accomplish recursive queries with the use of CTEs (common table expressions) and the UNION ALL clause. Let’s explore."
 ---
@@ -29,8 +29,7 @@ In the second SELECT, our recursive calls take place. Notice that in this SELECT
 
 Let’s see our results below. 
 
-(https://github.com/ShanNatRichards/shannatrichards.github.io/blob/48f66f9089509ab655f7347796cdbf0dc9f1237b/assets/img/recursive/even_numbers.png)
-
+![Recursion Even Numbers](https://github.com/ShanNatRichards/shannatrichards.github.io/blob/48f66f9089509ab655f7347796cdbf0dc9f1237b/assets/img/recursive/even_numbers.png)
 
  
 Our recursive query returns record rows with even numbers from 0 to 20.
@@ -39,7 +38,8 @@ Now that we’ve demonstrated a basic case of a SQL recursion – how would a re
 As mentioned briefly, recursive algorithms are great for traversing trees and graphs. A [popular example](https://www.dbta.com/Columns/DBA-Corner/An-Introduction-to-Recursive-SQL-96878.aspx) of a recursive cte in practice is that of recursing through a table that stores an organization’s employees with bosses, execs, middle managers, ...etc. to figure out organizational hierarchy.
 For our example, we’re going to traverse through possible activity sequences (likes nodes in a graph) to come up with potential tour schedules.
 
-***The Context *** Let’s consider a start-up tour company, Excellent Tours, that plans to offer a fun-filled city tour. 
+***The Context*** 
+Let’s consider a start-up tour company, Excellent Tours, that plans to offer a fun-filled city tour. 
 Currently, the company is in the process of figuring out tour activities/stops and, ultimately, the tour schedule. The clerks for the company have been researching city activities and then storing that those potential tour stops in a database table called tour_stops.
  
 
@@ -54,25 +54,31 @@ end_time TIME
 ```
 
 ***The Problem***
+
 The company’s clerks, in a bid to ensure tour variety, have identified and stored way too many potential tour-stops. Now, the company manager has to figure out the best sequence of activities to include in the tour.  For example, if the manager includes  ‘Painting at the Museum’ from 2pm – 4pm, then the tour cannot include activities that overlap in that timeframe such as ‘Visiting Zoo’ from 1pm – 3pm.  
 So, we need to figure out possible activity plans for a tour, where the activity time frames do not overlap. Also, the manager is keen start the tour with Yoga in the park. 
 
 Here’s our table:
-(https://github.com/ShanNatRichards/shannatrichards.github.io/blob/48f66f9089509ab655f7347796cdbf0dc9f1237b/assets/img/recursive/tour_stop%20table.png)
+![table](https://github.com/ShanNatRichards/shannatrichards.github.io/blob/48f66f9089509ab655f7347796cdbf0dc9f1237b/assets/img/recursive/tour_stop%20table.png)
 
 
 ***Solution?***
+
 Let’s use a recursive query to spool out possible activity sequences for the tour. 
 
 ```sql
 WITH RECURSIVE stg as (
-SELECT start_time, end_time, concat('>> ' , name, ' ', start_time, ' - ', end_time) as activity_plan
+SELECT start_time
+, end_time
+, concat('>> ' , name, ' ', start_time, ' - ', end_time) as activity_plan
 FROM tour_stops
 WHERE stop_id = 14
 
 UNION ALL
 
-SELECT t.start_time, t.end_time, concat(stg.activity_plan, '>> ', t.name, ' ', t.start_time, ' - ', t.end_time) as activity_plan 
+SELECT t.start_time
+, t.end_time
+, concat(stg.activity_plan, '>> ', t.name, ' ', t.start_time, ' - ', t.end_time) as activity_plan 
 FROM stg
 INNER JOIN tour_stops t on t.start_time > stg.end_time
 )
@@ -81,7 +87,7 @@ SELECT  activity_plan
 FROM stg;
 ```
 The recursion returns 286 rows and here’s a sample of the results:
-(https://github.com/ShanNatRichards/shannatrichards.github.io/blob/48f66f9089509ab655f7347796cdbf0dc9f1237b/assets/img/recursive/result1.png)
+![recursive query](https://github.com/ShanNatRichards/shannatrichards.github.io/blob/48f66f9089509ab655f7347796cdbf0dc9f1237b/assets/img/recursive/result1.png)
  
 Let’s go over what’s a happening above.
 In the initial SELECT query, we return one row for Yoga in the Park – which is the activity the manager is keen to start the tour with. This is row 1 in the results above. 
@@ -89,10 +95,12 @@ In the recursive SELECT, there is a JOIN back to the tour_stop table, which look
 For every row returned from 2- 18, the recursion will be called again looking for activities with start times greater than the end times of those activities in 2-18. And so on and so forth until the recursion can longer find rows that meet the join condition. 
 
 ***Refining the query***
+
 The query returned quite a long list of potential schedules for the tour. However, most of these returned rows are superfluous and wouldn’t be useful to the tour manager. We can refine the returned list to be more useful by adding  extra filters. 
 Let’s say the manager wants activity sequences that includes lunch. Also, the final activity in the sequence should end after 3pm.
 
 In the outer SELECT clause, let’s add a WHERE clause and also re-order the query output so that we see the longest chain of activities first.
+
 sql```
 SELECT activity_plan
 FROM stg
@@ -102,7 +110,7 @@ ORDER BY LENGTH(activity_plan) DESC;
 
 Sample of Results:
  
-(https://github.com/ShanNatRichards/shannatrichards.github.io/blob/48f66f9089509ab655f7347796cdbf0dc9f1237b/assets/img/recursive/result_cleaned.png)
+![recursive query 2](https://github.com/ShanNatRichards/shannatrichards.github.io/blob/48f66f9089509ab655f7347796cdbf0dc9f1237b/assets/img/recursive/result_cleaned.png)
 
 ### Concluding Considerations:
 
