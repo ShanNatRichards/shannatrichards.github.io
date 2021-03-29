@@ -3,11 +3,11 @@ layout: default
 title:  "Recursive Queries"
 date:   2021-03-27 17:21:38 -0800
 categories: postgres, sql, recursion, cte
-excerpt: "In postgreSQL, we accomplish recursive queries with the use of CTEs (common table expressions) and the UNION ALL clause. Let’s explore."
+excerpt: "In postgreSQL, we can accomplish recursive queries with the use of CTEs (common table expressions) and the UNION ALL clause. Let’s explore."
 ---
 A recursive function is one that calls itself –  it requires a base case and a recursive call. Typically, recursive functions are useful for solving Math factorials and traversing structures such as trees and graphs, to name a few practical applications.  In postgreSQL, we accomplish recursive queries with the use of CTEs (common table expressions) and the UNION ALL clause. Let’s explore more below.
 
-TL;DR. See complete code [here](https://github.com/ShanNatRichards/postgreSQL/recursive_query.sql)
+**TL;DR? See complete code [here.](https://github.com/ShanNatRichards/postgreSQL/recursive_query.sql)**
 
 ### Basics of A Recursive SQL Query
 
@@ -28,20 +28,22 @@ SELECT even_num from rcte;
 ```
 Within our cte, the first SELECT is the non-recursive term - the simplest form of the query that does not need a recursive call.  In this case, it sets the first even number to 0.   
 
-In the second SELECT, our recursive calls take place. Notice that in this SELECT query, the FROM clause references the name of the cte itself ‘rcte’. In essence, the cte is calling itself.  And everytime it does a recursive call, it adds 2 to the previous number.
+In the second SELECT, our recursive calls take place. Notice that in this SELECT query, the FROM clause references the cte itself *rcte*. In essence, the query is calling itself. Furthermore, everytime it does a recursive call, it adds 2 to the previous number.
 
 Let’s see our results below. 
 
 ![Recursion Even Numbers](https://github.com/ShanNatRichards/postgreSQL/blob/main/images/even_numbers.png)
 
  
-Our recursive query returns record rows with even numbers from 0 to 20.
+Our recursive query returns rows with even numbers from 0 to 20.
+
 ### Recursion in Practice
 Now that we’ve demonstrated a basic case of a SQL recursion – how would a recursive CTE be useful in practice? 
 As mentioned briefly, recursive algorithms are great for traversing trees and graphs. A [popular example](https://www.dbta.com/Columns/DBA-Corner/An-Introduction-to-Recursive-SQL-96878.aspx) of a recursive cte in practice is that of recursing through a table that stores an organization’s employees with bosses, execs, middle managers, ...etc. to figure out organizational hierarchy.
 For our example, we’re going to traverse through possible activity sequences (likes nodes in a graph) to come up with potential tour schedules.
 
 ***The Context*** 
+
 Let’s consider a start-up tour company, Excellent Tours, that plans to offer a fun-filled city tour. 
 Currently, the company is in the process of figuring out tour activities/stops and, ultimately, the tour schedule. The clerks for the company have been researching city activities and then storing that those potential tour stops in a database table called tour_stops.
  
@@ -50,7 +52,6 @@ Currently, the company is in the process of figuring out tour activities/stops a
 CREATE TABLE tour_stops (
 stop_id INT,
 name VARCHAR(100),
-street_address VARCHAR(100),
 start_time TIME,
 end_time TIME
 );
@@ -62,10 +63,11 @@ The company’s clerks, in a bid to ensure tour variety, have identified and sto
 So, we need to figure out possible activity plans for a tour, where the activity time frames do not overlap. Also, the manager is keen start the tour with Yoga in the park. 
 
 Here’s our table:
+
 ![table](https://github.com/ShanNatRichards/postgreSQL/blob/main/images/tour_stop%20table.png)
 
 
-***Solution?***
+***The Solution***
 
 Let’s use a recursive query to spool out possible activity sequences for the tour. 
 
@@ -92,26 +94,26 @@ FROM stg;
 The recursion returns 286 rows and here’s a sample of the results:
 ![recursive query](https://github.com/ShanNatRichards/postgreSQL/blob/main/images/result1.png)
  
-Let’s go over what’s a happening above.
+Let’s go over what’s happening above.
+
 In the initial SELECT query, we return one row for Yoga in the Park – which is the activity the manager is keen to start the tour with. This is row 1 in the results above. 
 In the recursive SELECT, there is a JOIN back to the tour_stop table, which looks for rows that have a start time greater than the end time for ‘Yoga in the Park’. There are several activities that meet this condition and are returned in rows 2 -18.
 For every row returned from 2- 18, the recursion will be called again looking for activities with start times greater than the end times of those activities in 2-18. And so on and so forth until the recursion can longer find rows that meet the join condition. 
 
 
-***Refining the query***
+***Refining The Query***
 
 The query returned quite a long list of potential schedules for the tour. However, most of these returned rows are superfluous and wouldn’t be useful to the tour manager. We can refine the returned list to be more useful by adding  extra filters. 
 Let’s say the manager wants activity sequences that includes lunch. Also, the final activity in the sequence should end after 3pm.
 
 In the outer SELECT clause, let’s add a WHERE clause and also re-order the query output so that we see the longest chain of activities first.
 
-sql```
+```sql
 SELECT activity_plan
 FROM stg
 WHERE  end_time > '15:00' 
        AND activity_plan like '%Lunch%'
 ORDER BY LENGTH(activity_plan) DESC;
-
 ```
 
 Sample of Results:
