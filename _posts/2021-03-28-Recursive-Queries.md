@@ -62,7 +62,7 @@ The company’s clerks, in a bid to ensure tour variety, have identified and sto
 So, we need to figure out possible activity plans for a tour, where the activity time frames do not overlap. Also, the manager is keen start the tour with Yoga in the park. 
 
 Here’s our table:
-![table](https://github.com/ShanNatRichards/postgreSQL/blob/f4d9f67e973ab942a8c830b3a8758eae0d29577e/recursive/tour_stop%20table.png)
+![table](https://github.com/ShanNatRichards/postgreSQL/recursive/tour_stop%20table.png)
 
 
 ***Solution?***
@@ -90,7 +90,7 @@ SELECT  activity_plan
 FROM stg;
 ```
 The recursion returns 286 rows and here’s a sample of the results:
-![recursive query](https://github.com/ShanNatRichards/postgreSQL/blob/f4d9f67e973ab942a8c830b3a8758eae0d29577e/recursive/result1.png)
+![recursive query](https://github.com/ShanNatRichards/postgreSQL/recursive/result1.png)
  
 Let’s go over what’s a happening above.
 In the initial SELECT query, we return one row for Yoga in the Park – which is the activity the manager is keen to start the tour with. This is row 1 in the results above. 
@@ -114,7 +114,7 @@ ORDER BY LENGTH(activity_plan) DESC;
 
 Sample of Results:
  
-![recursive query 2](https://github.com/ShanNatRichards/postgreSQL/blob/f4d9f67e973ab942a8c830b3a8758eae0d29577e/recursive/result_cleaned.png)
+![recursive query 2](https://github.com/ShanNatRichards/postgreSQL/recursive/result_cleaned.png)
 
 ### Concluding Considerations:
 
