@@ -7,7 +7,7 @@ excerpt: "In postgreSQL, we can accomplish recursive queries with the use of CTE
 ---
 A recursive function is one that calls itself –  it requires a base case and a recursive call. Typically, recursive functions are useful for solving Math factorials and traversing structures such as trees and graphs, to name a few practical applications.  In postgreSQL, we accomplish recursive queries with the use of CTEs (common table expressions) and the UNION ALL clause. Let’s explore more below.
 
-**TL;DR? See complete code [here.](https://github.com/ShanNatRichards/postgreSQL/recursive_query.sql)**
+**TL;DR? See complete code [here.](https://github.com/ShanNatRichards/postgreSQL/blob/main/recursive_query.sql)**
 
 ### Basics of A Recursive SQL Query
 
