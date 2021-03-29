@@ -32,7 +32,7 @@ In the second SELECT, our recursive calls take place. Notice that in this SELECT
 
 Let’s see our results below. 
 
-![Recursion Even Numbers](https://github.com/ShanNatRichards/postgreSQL/blob/main/images/even_numbers.png)
+![Recursion Even Numbers](images/even_numbers.png)
 
  
 Our recursive query returns rows with even numbers from 0 to 20.
@@ -64,7 +64,7 @@ So, we need to figure out possible activity plans for a tour, where the activity
 
 Here’s our table:
 
-![table](https://github.com/ShanNatRichards/postgreSQL/blob/main/images/tour_stop%20table.png)
+![table](https://github.com/ShanNatRichards/postgreSQL/main/images/tour_stop%20table.png)
 
 
 ***The Solution***
